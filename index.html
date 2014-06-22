@@ -28,37 +28,357 @@
 
     <div class="container">
       <section id="main_content">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <p>&lt;!DOCTYPE html&gt;</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+
+<p>
+</p>
+<p></p>Human Activity Recognition using Random Forest Prediction Model
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {   
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+<p></p>
+
+<p></p>
+
+<h1>
+<a name="human-activity-recognition-using-random-forest-prediction-model" class="anchor" href="#human-activity-recognition-using-random-forest-prediction-model"><span class="octicon octicon-link"></span></a>Human Activity Recognition using Random Forest Prediction Model</h1>
+
+<h3>
+<a name="data" class="anchor" href="#data"><span class="octicon octicon-link"></span></a>Data</h3>
+
+<p>This exercise is aimed at predicting the class of exercise performed by users based on data captured using wearable accelerometers.
+AHR dataset for this study is provided by Groupware (<a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>)</p>
+
+<h3>
+<a name="exploratory-analysis" class="anchor" href="#exploratory-analysis"><span class="octicon octicon-link"></span></a>Exploratory Analysis</h3>
+
+<p>The raw dataset not only contained the accelerometers measurements but also computed statistics (Variance, Standard Devation, skewness, Kurtosis, Max, Min, Average) for each of the observation.</p>
+
+<p>For the purpose of this analysis, we remove all columns containing computed statistics from the dataset to ensure we have correct set of mathematically independant predictors.</p>
+
+<p>Outcome variable, classe, is a factor with 5 outcomes therefore, for creating the model, we need to use Random Forest technique (since GLM can be used only if outcome variable is a factor with only 2 outcomes).</p>
+
+<h3>
+<a name="fitting-the-model" class="anchor" href="#fitting-the-model"><span class="octicon octicon-link"></span></a>Fitting the Model</h3>
+
+<p>We randomly sample 3000 records from the entire training set of 19,622 records (on account of limited computational resources available for the purpose of this exercise) and fit a training model using Random Forest method on these 3000 records.</p>
+
+<p>The accuracy predicted by the model is 100% while that from Confusion Matrix is 96.7%</p>
+
+<h3>
+<a name="cross-validation" class="anchor" href="#cross-validation"><span class="octicon octicon-link"></span></a>Cross Validation</h3>
+
+<p>For cross validation, the training model fitted above is used to predict the outcome (classe) for the entire dataset of 19,622 records. The predicted value of classe is compared with the actual value availale in the raw dataset. The observed prediction accuracy rate for the model fitted by us is 98.05%</p>
+
+<h3>
+<a name="predicting-for-the-test-dataset" class="anchor" href="#predicting-for-the-test-dataset"><span class="octicon octicon-link"></span></a>Predicting for the Test Dataset</h3>
+
+<p>Finally, we use our fitted model on the testing dataset of 20 records, and append predicted values to the dataset.</p>
+
+<h3>
+<a name="load-required-libraries" class="anchor" href="#load-required-libraries"><span class="octicon octicon-link"></span></a>Load required libraries</h3>
+
+<pre><code>suppressWarnings(library(caret))
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<pre><code>## Loading required package: lattice
+## Loading required package: ggplot2
+</code></pre>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="download-raw-training-and-testing-data" class="anchor" href="#download-raw-training-and-testing-data"><span class="octicon octicon-link"></span></a>Download Raw Training and Testing Data</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<pre><code>setInternet2(TRUE)
+download.file("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv", 
+    destfile = "pml-training.csv")
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+download.file("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv", 
+    destfile = "pml-testing.csv")
+</code></pre>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="load-data-in-csv-files-into-datasets" class="anchor" href="#load-data-in-csv-files-into-datasets"><span class="octicon octicon-link"></span></a>Load data in csv files into datasets</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>pmltraining &lt;- read.csv("pml-training.csv", header = TRUE)
+pmltesting &lt;- read.csv("pml-testing.csv", header = TRUE)
+</code></pre>
+
+<h3>
+<a name="remove-columns-containing-mathematicallystatistically-calculated-values-and-nas-from-the-training-dataset" class="anchor" href="#remove-columns-containing-mathematicallystatistically-calculated-values-and-nas-from-the-training-dataset"><span class="octicon octicon-link"></span></a>Remove columns containing mathematically/statistically calculated values and NAs from the training dataset</h3>
+
+<pre><code>pmltraining &lt;- pmltraining[, -grep("^var", colnames(pmltraining))]
+pmltraining &lt;- pmltraining[, -grep("^avg", colnames(pmltraining))]
+pmltraining &lt;- pmltraining[, -grep("^stddev", colnames(pmltraining))]
+pmltraining &lt;- pmltraining[, -grep("^skew", colnames(pmltraining))]
+pmltraining &lt;- pmltraining[, -grep("^kurtosis", colnames(pmltraining))]
+pmltraining &lt;- pmltraining[, -grep("^max", colnames(pmltraining))]
+pmltraining &lt;- pmltraining[, -grep("^min", colnames(pmltraining))]
+# Remove columns with NAs
+pmltraining &lt;- pmltraining[sapply(pmltraining, function(x) !any(is.na(x)))]
+# Remove columns with blank values
+pmltraining &lt;- pmltraining[, -grep("^amplitude", colnames(pmltraining))]
+# Remove first 5 columns since they don't contribute to effect
+pmltraining &lt;- pmltraining[, -c(1:5)]
+</code></pre>
+
+<h3>
+<a name="remove-columns-containing-mathematicallystatistically-calculated-values-and-nas-from-the-testing-dataset" class="anchor" href="#remove-columns-containing-mathematicallystatistically-calculated-values-and-nas-from-the-testing-dataset"><span class="octicon octicon-link"></span></a>Remove columns containing mathematically/statistically calculated values and NAs from the testing dataset</h3>
+
+<pre><code>pmltesting &lt;- pmltesting[, -grep("^var", colnames(pmltesting))]
+pmltesting &lt;- pmltesting[, -grep("^avg", colnames(pmltesting))]
+pmltesting &lt;- pmltesting[, -grep("^stddev", colnames(pmltesting))]
+pmltesting &lt;- pmltesting[, -grep("^skew", colnames(pmltesting))]
+pmltesting &lt;- pmltesting[, -grep("^kurtosis", colnames(pmltesting))]
+pmltesting &lt;- pmltesting[, -grep("^max", colnames(pmltesting))]
+pmltesting &lt;- pmltesting[, -grep("^min", colnames(pmltesting))]
+# Remove columns with NAs
+pmltesting &lt;- pmltesting[sapply(pmltesting, function(x) !any(is.na(x)))]
+# Remove first 5 columns since they don't contribute to effect
+pmltesting &lt;- pmltesting[, -c(1:5)]
+</code></pre>
+
+<h3>
+<a name="randomly-sample-3000-records-from-raw-training-dataset-to-match-the-available-computing-powerresources" class="anchor" href="#randomly-sample-3000-records-from-raw-training-dataset-to-match-the-available-computing-powerresources"><span class="octicon octicon-link"></span></a>Randomly sample 3000 records from raw training dataset to match the available computing power/resources</h3>
+
+<pre><code>set.seed(1234)
+trainInds &lt;- sample(nrow(pmltraining), 3000)
+train &lt;- data.frame(pmltraining[trainInds, ])
+</code></pre>
+
+<h3>
+<a name="fit-the-training-model-and-validate-its-accuracy-level" class="anchor" href="#fit-the-training-model-and-validate-its-accuracy-level"><span class="octicon octicon-link"></span></a>Fit the training model and validate its accuracy level</h3>
+
+<pre><code>fitMod &lt;- suppressWarnings(train(classe ~ ., data = train, method = "rf"))
+</code></pre>
+
+<pre><code>## Loading required package: randomForest
+## randomForest 4.6-7
+## Type rfNews() to see new features/changes/bug fixes.
+</code></pre>
+
+<pre><code>fitMod
+</code></pre>
+
+<pre><code>## Random Forest 
+## 
+## 3000 samples
+##   54 predictors
+##    5 classes: 'A', 'B', 'C', 'D', 'E' 
+## 
+## No pre-processing
+## Resampling: Bootstrapped (25 reps) 
+## 
+## Summary of sample sizes: 3000, 3000, 3000, 3000, 3000, 3000, ... 
+## 
+## Resampling results across tuning parameters:
+## 
+##   mtry  Accuracy  Kappa  Accuracy SD  Kappa SD
+##   2     1         0.9    0.008        0.01    
+##   30    1         1      0.007        0.009   
+##   50    1         0.9    0.01         0.01    
+## 
+## Accuracy was used to select the optimal model using  the largest value.
+## The final value used for the model was mtry = 28.
+</code></pre>
+
+<pre><code>confusionMatrix(fitMod)
+</code></pre>
+
+<pre><code>## Bootstrapped (25 reps) Confusion Matrix 
+## 
+## (entries are percentages of table totals)
+##  
+##           Reference
+## Prediction    A    B    C    D    E
+##          A 28.1  0.6  0.0  0.0  0.0
+##          B  0.0 18.1  0.7  0.1  0.2
+##          C  0.0  0.4 17.8  0.6  0.1
+##          D  0.1  0.0  0.2 15.3  0.2
+##          E  0.0  0.0  0.0  0.1 17.4
+</code></pre>
+
+<h3>
+<a name="perform-cross-validation-of-models-accuracy-with-the-original-raw-data" class="anchor" href="#perform-cross-validation-of-models-accuracy-with-the-original-raw-data"><span class="octicon octicon-link"></span></a>Perform cross validation of model's accuracy with the original raw data</h3>
+
+<pre><code>predfit &lt;- predict(fitMod, pmltraining)
+pmltraining$predRight &lt;- predfit == pmltraining$classe
+table(predfit, pmltraining$classe)
+</code></pre>
+
+<pre><code>##        
+## predfit    A    B    C    D    E
+##       A 5570  107    0    5    0
+##       B    8 3626   86    4    3
+##       C    0   61 3327   60    1
+##       D    1    3    9 3129   21
+##       E    1    0    0   18 3582
+</code></pre>
+
+<h3>
+<a name="predict-outcome-for-the-20-test-cases-using-the-model-fitted-above-and-append-the-predicted-outcome-to-the-testing-data-save-the-results-in-a-new-output-dataset-create-a-csv-file-with-predictions-for-the-testing-dataset" class="anchor" href="#predict-outcome-for-the-20-test-cases-using-the-model-fitted-above-and-append-the-predicted-outcome-to-the-testing-data-save-the-results-in-a-new-output-dataset-create-a-csv-file-with-predictions-for-the-testing-dataset"><span class="octicon octicon-link"></span></a>Predict outcome for the 20 test cases using the model fitted above and append the predicted outcome to the testing data. Save the results in a new 'output' dataset. Create a .csv file with predictions for the testing dataset</h3>
+
+<pre><code>predictions &lt;- predict(fitMod, pmltesting)
+pmltesting$predRight &lt;- predictions
+output &lt;- cbind(pmltesting, predictions)
+write.table(output, "Predictions.csv")
+</code></pre>
+
+<p></p>
+
+<p></p>
       </section>
     </div>
 
